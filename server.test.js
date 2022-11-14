@@ -1,8 +1,8 @@
-const server = require("./index")
+const serverTester = require("./index")
 
 test('no server given in the arguments', async () => {
     try {
-      await server.findServer();
+      await serverTester.findServer();
     } catch (e) {
       expect(e).toMatch('Servers not found');
     }
@@ -11,7 +11,7 @@ test('no server given in the arguments', async () => {
 jest.setTimeout(6000)
 test('no server are online', async () => {
     try {
-      await server.findServer([
+      await serverTester.findServer([
         {
           "url": "https://does-not-work.perfume.new",
           "priority": 1
@@ -35,7 +35,7 @@ test('no server are online', async () => {
 });
 
 test('one server is online', async () => {
-       let response = await server.findServer([
+       let response = await serverTester.findServer([
         {
             "url": "https://www.myntra.com",
             "priority": 3
@@ -50,5 +50,4 @@ test('one server is online', async () => {
       ]);
       expect(response).toMatch('https://www.flipkart.com');
 });
-  
-  
+
